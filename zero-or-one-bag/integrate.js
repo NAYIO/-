@@ -12,11 +12,14 @@ let idName = [];
 let equleId = [];
 let value = [];//所拥有的价值
 let number = [];//所含物品的个数
+<<<<<<< HEAD
 let lst = {
     capacity : Array(),
     valueBag : Array(),
 };
 let index = 0;
+=======
+>>>>>>> 22e0b20904c036a77b73f010e13c6b9b4f7082a9
 function submitbtn(){
     for(let i=1;i<=5;i++){
         capa[i-1] = Number($("#capa"+i).val());
@@ -38,6 +41,18 @@ function submitbtn(){
         $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]);
     }
 }
+<<<<<<< HEAD
+=======
+function ZeroOne_Pack(cost,weight,n){
+    for(let i=n; i>=cost; i--)
+        dp[i] = Math.max(dp[i],dp[i-cost] + weight);
+}
+void Complete_Pack(cost,weight,n)//把完全背包封装成函数
+{
+    for(let i=cost; i<=n; i++)
+        dp[i] = Math.max(dp[i],dp[i-cost] + weight);
+}
+>>>>>>> 22e0b20904c036a77b73f010e13c6b9b4f7082a9
 //封装
 var bagValue = {
     zeroOne : function(){
@@ -73,6 +88,7 @@ var bagValue = {
         console.log("max"+bag[sum]);
     },
     multiBag : function(){
+<<<<<<< HEAD
         //分份
         for(let i=0;i<capa.length;i++){
             let c = 1;
@@ -100,6 +116,23 @@ var bagValue = {
         }
         console.log(bag);
         console.log("max"+bag[sum]);
+=======
+        count = 0;
+        for(let i=0;i<capa.length;i++){
+            if(sum<=number[i]*capa[i]){
+                Complete_Pack(capa[i],value[i],sum); 
+            }
+            else{
+                    let k = 1;
+                    while(k < number[i]){
+                        ZeroOne_Pack(k*capa[i],k*value[i],sum);
+                        number[i] -= k;
+                        
+                    }
+                    ZeroOne_Pack(num[i]*c[i],num[i]*w[i],m);
+                }
+        }
+>>>>>>> 22e0b20904c036a77b73f010e13c6b9b4f7082a9
     }
 }
 let record = [];
