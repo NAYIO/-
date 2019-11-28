@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>背包动画</title>
+        <link rel="stylesheet" type="text/css" href="bag.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    </head>
+    <body>
+            <p id="capacity">
+                capacity
+                <input type="text" id="capa1"/>
+                <input type="text" id="capa2"/>
+                <input type="text" id="capa3"/>
+                <input type="text" id="capa4"/>
+                <input type="text" id="capa5"/>
+            </p>
+            <p id="value">
+                value
+                <input type="text" id="val1"/>
+                <input type="text" id="val2"/>
+                <input type="text" id="val3"/>
+                <input type="text" id="val4"/>
+                <input type="text" id="val5"/>
+            </p>
+            <input class="but" id="submit-btn" type="submit" value="确定" onclick="submitbtn()"/>
+        <ul class="object">
+            <li class="item" id="objOne">物品一</li>
+            <li class="item" id="objTwo">物品二</li>
+            <li class="item" id="objThree">物品三</li>
+            <li class="item" id="objFour">物品四</li>
+            <li class="item" id="objFive">物品五</li>
+        </ul>
+        <div id="bag-area">背包区域</div>
+        <div class="but" id="zero-one">01背包</div>
+        <div class="but" id="complete-bag">完全背包</div>
+        <div class="but" id="recover">复原</div>
+    </body>
+    <script type="text/javascript" src="integrate.js"></script>
+</html>

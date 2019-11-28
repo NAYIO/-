@@ -1,0 +1,47 @@
+.object{
+    list-style: none;
+}
+.item{
+    height: 100px;
+    width: 60px;
+    margin: 10px;
+    float: left;
+    background-color: rgb(1, 14, 9);
+    color: antiquewhite;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+#bag-area{
+    width: 500px;
+    height: 200px;
+    background-color: bisque;
+    color: black;
+    position: absolute;
+    left: 2vw;
+    top: 60vh;
+}
+.but{
+    width: 100px;
+    height: 40px;
+    background-color: bisque;
+    color: black;
+    position: absolute;
+    
+}
+#zero-one{
+    right: 200px;
+    top: 150px;
+}
+#complete-bag{
+    right: 200px;
+    top: 200px;
+}
+#recover{
+    right: 200px;
+    top: 250px;
+}
+#submit-btn{
+    right: 200px;
+    top: 100px;
+}
