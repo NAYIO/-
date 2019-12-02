@@ -7,22 +7,32 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
     </head>
     <body>
-            <p id="capacity">
-                capacity
-                <input type="text" id="capa1"/>
-                <input type="text" id="capa2"/>
-                <input type="text" id="capa3"/>
-                <input type="text" id="capa4"/>
-                <input type="text" id="capa5"/>
-            </p>
-            <p id="value">
-                value
-                <input type="text" id="val1"/>
-                <input type="text" id="val2"/>
-                <input type="text" id="val3"/>
-                <input type="text" id="val4"/>
-                <input type="text" id="val5"/>
-            </p>
+        <table>
+            <tr id="capacity">
+                <th>capacity</th>
+                <td><input type="text" autocomplete="off" id="capa1"/></td>
+                <td><input type="text" autocomplete="off" id="capa2"/></td>
+                <td><input type="text" autocomplete="off" id="capa3"/></td>
+                <td><input type="text" autocomplete="off" id="capa4"/></td>
+                <td><input type="text" autocomplete="off" id="capa5"/></td>
+            </tr>
+            <tr id="value">
+                <th>value</th>
+                <td><input type="text" autocomplete="off" id="val1"/></td>
+                <td><input type="text" autocomplete="off" id="val2"/></td>
+                <td><input type="text" autocomplete="off" id="val3"/></td>
+                <td><input type="text" autocomplete="off" id="val4"/></td>
+                <td><input type="text" autocomplete="off" id="val5"/></td>
+            </tr>
+            <tr id="number">
+                <th>number</th>
+                <td><input type="text" autocomplete="off" id="num1"/></td>
+                <td><input type="text" autocomplete="off" id="num2"/></td>
+                <td><input type="text" autocomplete="off" id="num3"/></td>
+                <td><input type="text" autocomplete="off" id="num4"/></td>
+                <td><input type="text" autocomplete="off" id="num5"/></td>
+            </tr>
+        </table>
             <input class="but" id="submit-btn" type="submit" value="确定" onclick="submitbtn()"/>
         <ul class="object">
             <li class="item" id="objOne">物品一</li>
@@ -34,6 +44,7 @@
         <div id="bag-area">背包区域</div>
         <div class="but" id="zero-one">01背包</div>
         <div class="but" id="complete-bag">完全背包</div>
+        <div class="but" id="multi-bag">多重背包</div>
         <div class="but" id="recover">复原</div>
     </body>
     <script type="text/javascript" src="integrate.js"></script>

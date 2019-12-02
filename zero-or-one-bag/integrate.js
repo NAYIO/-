@@ -12,14 +12,14 @@ let idName = [];
 let equleId = [];
 let value = [];//所拥有的价值
 let number = [];//所含物品的个数
-<<<<<<< HEAD
+let index;
 let lst = {
     capacity : Array(),
     valueBag : Array(),
+    numBag : Array(),
 };
-let index = 0;
-=======
->>>>>>> 22e0b20904c036a77b73f010e13c6b9b4f7082a9
+let counts = (arr, value) => arr.reduce((a, v) => v === value ? a + 1 : a + 0, 0);//找出某数字在数组里出现的次数
+//确定按钮
 function submitbtn(){
     for(let i=1;i<=5;i++){
         capa[i-1] = Number($("#capa"+i).val());
@@ -30,6 +30,7 @@ function submitbtn(){
     for(let i=1;i<=5;i++){
         number[i-1] = Number($("#num"+i).val());
     }
+    //console.log(number);
     for(let i=0;i<capa.length;i++){
         switch(i){
             case 0:idName[i] = "#objOne";break;
@@ -41,18 +42,6 @@ function submitbtn(){
         $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]);
     }
 }
-<<<<<<< HEAD
-=======
-function ZeroOne_Pack(cost,weight,n){
-    for(let i=n; i>=cost; i--)
-        dp[i] = Math.max(dp[i],dp[i-cost] + weight);
-}
-void Complete_Pack(cost,weight,n)//把完全背包封装成函数
-{
-    for(let i=cost; i<=n; i++)
-        dp[i] = Math.max(dp[i],dp[i-cost] + weight);
-}
->>>>>>> 22e0b20904c036a77b73f010e13c6b9b4f7082a9
 //封装
 var bagValue = {
     zeroOne : function(){
@@ -68,8 +57,8 @@ var bagValue = {
                 }
             }
         }
-        console.log(bag);
-        console.log("max"+bag[sum]);
+        //console.log(bag);
+        //console.log("max"+bag[sum]);
     },
     compleBag : function(){
         count = 0;
@@ -84,64 +73,52 @@ var bagValue = {
                 }
             }
         }
-        console.log(bag);
-        console.log("max"+bag[sum]);
+        //console.log(bag);
+        //console.log("max"+bag[sum]);
     },
     multiBag : function(){
-<<<<<<< HEAD
-        //分份
+        count = 0;
+        index = -1;
+        let num = [];
         for(let i=0;i<capa.length;i++){
+            num[i] = number[i];
             let c = 1;
-            while(number[i]-c > 0){
-                number[i] -= c;
-                lst.capacity[index++] = c*capa[i];
+            while(num[i]-c > 0){
+                num[i] -= c;
+                lst.capacity[++index] = c*capa[i];
                 lst.valueBag[index] = c*value[i];
+                lst.numBag[index] = i;
                 c *= 2;
             }
-            lst.capacity[index] = number[i]*capa[i];
-            lst.valueBag[index] = number[i]*value[i];
+            lst.capacity[++index] = num[i]*capa[i];
+            lst.valueBag[index] = num[i]*value[i];
+            lst.numBag[index] = i;
         }
-        //按照01背包的方式选择
-        count = 0;
+        //console.log(lst);
+        //console.log(index);
         for(let i = 0;i<=index;i++){
             for(let j = sum;j>=0;j--){
                 if(bag[j]<=bag[j-lst.capacity[i]]+lst.valueBag[i] && j>=lst.capacity[i]){
-                    bag[j] = bag[j-lst.capacity]+lst.valueBag[i];
+                    bag[j] = bag[j-lst.capacity[i]]+lst.valueBag[i];
                     counti[count] = i;
                     countj[count] = j;
                     countjcapa[count] = j-lst.capacity[i];
                     count++;
+        
                 }
             }
         }
-        console.log(bag);
-        console.log("max"+bag[sum]);
-=======
-        count = 0;
-        for(let i=0;i<capa.length;i++){
-            if(sum<=number[i]*capa[i]){
-                Complete_Pack(capa[i],value[i],sum); 
-            }
-            else{
-                    let k = 1;
-                    while(k < number[i]){
-                        ZeroOne_Pack(k*capa[i],k*value[i],sum);
-                        number[i] -= k;
-                        
-                    }
-                    ZeroOne_Pack(num[i]*c[i],num[i]*w[i],m);
-                }
-        }
->>>>>>> 22e0b20904c036a77b73f010e13c6b9b4f7082a9
+        //console.log(bag);
+        //console.log("max"+bag[sum]);
     }
 }
 let record = [];
 let a = 0;
-function move(){
+function multiMove(){
     a = 0;
     let m = count;
-
     let temp = sum;
+    //console.log(countj);
     while(m>=0){
         if(countj[m] === temp){
             temp = countjcapa[m];
@@ -149,39 +126,134 @@ function move(){
         }
         m--;
     }
+    console.log("record"+record);
+    console.log("a"+a);
     for(let i=0;i<a;i++){
-        equleId[i] = idName[record[i]];
+        equleId[i] = idName[  lst.numBag[  record[i]  ]  ];
     }
+    //console.log(equleId);
     let i = a - 1;
     while(i>=0){
-        $(equleId[i]).animate({top:"400px"},"slow");
+        $(equleId[i]).stop(true,false).animate({top:"342px"},"slow");
+        $(equleId[i]).css("height","150px");
+        i--;
+    }
+}
+function move(){
+    a = 0;
+    let m = count;
+    let temp = sum;
+    //console.log(countj);
+    while(m>=0){
+        if(countj[m] === temp){
+            temp = countjcapa[m];
+            record[a++] = counti[m];
+        }
+        m--;
+    }
+    console.log("record"+record);
+    console.log("a"+a);
+    for(let i=0;i<a;i++){
+        equleId[i] = idName[ record[i]  ];
+    }
+    console.log(equleId);
+    let i = a - 1;
+    while(i>=0){
+        $(equleId[i]).stop(true,false).animate({top:"342px"},"slow");
+        $(equleId[i]).animate({top:"342px"},"slow");
+        $(equleId[i]).css("height","150px");
         i--;
     }
 }
 //复原
 function recovery(){
-    console.log(record);
+    //console.log(record);
     let i = a - 1;
     while(i>=0){
         $(equleId[i]).animate({top:"0px"},"slow");
+        $(equleId[i]).css("height","100px");
         i--;
     }  
+    for(let i=0;i<capa.length;i++){
+        $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]);
+    }
+   
+    $("#bag-area").text("背包区域");
+    $("#bag-area").css("line-height","197px");
+    
 }
 //调用
 $("#zero-one").click(function(){
+    for(let i=0;i<capa.length;i++){
+        $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]);
+    }
     bagValue.zeroOne();
     move();
     $("#bag-area").text("01背包，装下的物品的总价值最大为"+bag[sum]);
+    $("#bag-area").css("line-height","400px");
     for(let w = 0;w<=sum;w++){
         bag[w] = 0;
     }
+    for(let w = 0;w<record.length;w++){
+        record[w] = -1;
+    }
+    
 })
 $("#complete-bag").click(function(){
+    for(let i=0;i<capa.length;i++){
+        $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]);
+    }
     bagValue.compleBag();
     move();
+    //
+    let culmul = [];
+    for(let i=0;i<capa.length;i++){
+        culmul[i] = counts(record,i);
+    }
+    //console.log(record);
+    console.log("comp-culmul"+culmul);
+    for(let i=0;i<capa.length;i++){
+        $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]+"\nnum:"+culmul[i]);
+    }
+    //
     $("#bag-area").text("完全背包，装下的物品的总价值最大为"+bag[sum]);
+    $("#bag-area").css("line-height","400px");
     for(let w = 0;w<=sum;w++){
         bag[w] = 0;
+    }
+    for(let w = 0;w<record.length;w++){
+        record[w] = -1;
+    }
+})
+$("#multi-bag").click(function(){
+    
+    for(let i=0;i<capa.length;i++){
+        $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]+"\nnum:"+number[i]);
+    }
+    bagValue.multiBag();
+    multiMove();
+    //
+    let culmul = [];
+    let b = [];
+    console.log("clicka"+a);
+    for(let i=0;i<a;i++){
+        b[i] =  lst.numBag[  record[i]  ];
+    }
+    for(let i=0;i<capa.length;i++){
+        culmul[i] = counts(b,i);
+    }
+    console.log(b);
+    console.log(culmul);
+    for(let i=0;i<capa.length;i++){
+        $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]+"\nnum:"+culmul[i]);
+    }
+    $("#bag-area").text("多重背包，装下的物品的总价值最大为"+bag[sum]);
+    $("#bag-area").css("line-height","400px");
+    for(let w = 0;w<=sum;w++){
+        bag[w] = 0;
+    }
+    for(let w = 0;w<record.length;w++){
+        record[w] = -1;
     }
 })
 $("#recover").click(function(){

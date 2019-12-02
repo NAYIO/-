@@ -1,6 +1,20 @@
 .object{
     list-style: none;
 }
+table{
+    border-collapse: collapse;
+}
+th,tr,td{
+    border: 2px solid black;
+    width: 72px;
+    height: 25px;
+}
+input{
+    border: none;
+    outline: none;
+    width: 72px;
+    background-color: white;
+}
 .item{
     height: 100px;
     width: 60px;
@@ -13,8 +27,11 @@
     z-index: 2;
 }
 #bag-area{
+    text-align: center;
+    font-size: 25px;
+    line-height: 197px;
     width: 500px;
-    height: 200px;
+    height: 230px;
     background-color: bisque;
     color: black;
     position: absolute;
@@ -22,6 +39,9 @@
     top: 60vh;
 }
 .but{
+    border-radius: 5%;
+    text-align: center;
+    line-height: 40px;
     width: 100px;
     height: 40px;
     background-color: bisque;
@@ -29,19 +49,24 @@
     position: absolute;
     
 }
-#zero-one{
-    right: 200px;
+#submit-btn{
+    border-radius: 5%;
+    left: 540px;
     top: 150px;
 }
-#complete-bag{
-    right: 200px;
-    top: 200px;
+#zero-one{
+    left: 540px;
+    top: 300px;
 }
-#recover{
-    right: 200px;
+#complete-bag{
+    left: 540px;
     top: 250px;
 }
-#submit-btn{
-    right: 200px;
-    top: 100px;
+#recover{
+    left: 540px;
+    top: 200px;
+}
+#multi-bag{
+    left: 540px;
+    top: 350px;
 }
