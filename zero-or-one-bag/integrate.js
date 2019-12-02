@@ -1,5 +1,5 @@
 let capa = [];//所占容量
-let sum = 12;//包的总容量
+let sum;//包的总容量
 let bag = [];
 let counti = [];
 let countj = [];
@@ -21,6 +21,8 @@ let lst = {
 let counts = (arr, value) => arr.reduce((a, v) => v === value ? a + 1 : a + 0, 0);//找出某数字在数组里出现的次数
 //确定按钮
 function submitbtn(){
+    sum = Number( $("#sum").val() );
+    console.log(sum);
     for(let i=1;i<=5;i++){
         capa[i-1] = Number($("#capa"+i).val());
     }
