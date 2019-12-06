@@ -5,9 +5,6 @@ let counti = [];
 let countj = [];
 let countjcapa = [];
 let count;
-for(let w = 0;w<=sum;w++){
-    bag[w] = 0;
-}
 let idName = [];
 let equleId = [];
 let value = [];//所拥有的价值
@@ -21,8 +18,8 @@ let lst = {
 let counts = (arr, value) => arr.reduce((a, v) => v === value ? a + 1 : a + 0, 0);//找出某数字在数组里出现的次数
 //确定按钮
 function submitbtn(){
-    sum = Number( $("#sum").val() );
-    console.log(sum);
+    sum = Number($("#summ").val());
+    console.log("sum"+sum);
     for(let i=1;i<=5;i++){
         capa[i-1] = Number($("#capa"+i).val());
     }
@@ -48,6 +45,7 @@ function submitbtn(){
 var bagValue = {
     zeroOne : function(){
         count = 0;
+        console.log("suma  "+sum);
         for(let i = 0;i<=capa.length;i++){
             for(let j = sum;j>=0;j--){
                 if(bag[j]<=bag[j-capa[i]]+value[i] && j>=capa[i]){
@@ -136,7 +134,7 @@ function multiMove(){
     //console.log(equleId);
     let i = a - 1;
     while(i>=0){
-        $(equleId[i]).stop(true,false).animate({top:"342px"},"slow");
+        $(equleId[i]).stop(true,false).animate({top:"300px"},"slow");
         $(equleId[i]).css("height","150px");
         i--;
     }
@@ -161,8 +159,8 @@ function move(){
     console.log(equleId);
     let i = a - 1;
     while(i>=0){
-        $(equleId[i]).stop(true,false).animate({top:"342px"},"slow");
-        $(equleId[i]).animate({top:"342px"},"slow");
+        $(equleId[i]).stop(true,false).animate({top:"300px"},"slow");
+        //$(equleId[i]).animate({top:"300px"},"slow");
         $(equleId[i]).css("height","150px");
         i--;
     }
@@ -186,6 +184,10 @@ function recovery(){
 }
 //调用
 $("#zero-one").click(function(){
+    //console.log("sum1"+sum);
+    for(let w = 0;w<=sum;w++){
+        bag[w] = 0;
+    }
     for(let i=0;i<capa.length;i++){
         $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]);
     }
@@ -193,15 +195,15 @@ $("#zero-one").click(function(){
     move();
     $("#bag-area").text("01背包，装下的物品的总价值最大为"+bag[sum]);
     $("#bag-area").css("line-height","400px");
-    for(let w = 0;w<=sum;w++){
-        bag[w] = 0;
-    }
     for(let w = 0;w<record.length;w++){
         record[w] = -1;
     }
     
 })
 $("#complete-bag").click(function(){
+    for(let w = 0;w<=sum;w++){
+        bag[w] = 0;
+    }
     for(let i=0;i<capa.length;i++){
         $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]);
     }
@@ -220,15 +222,14 @@ $("#complete-bag").click(function(){
     //
     $("#bag-area").text("完全背包，装下的物品的总价值最大为"+bag[sum]);
     $("#bag-area").css("line-height","400px");
-    for(let w = 0;w<=sum;w++){
-        bag[w] = 0;
-    }
     for(let w = 0;w<record.length;w++){
         record[w] = -1;
     }
 })
 $("#multi-bag").click(function(){
-    
+    for(let w = 0;w<=sum;w++){
+        bag[w] = 0;
+    }
     for(let i=0;i<capa.length;i++){
         $(idName[i]).text("物品"+(i+1)+"\ncapa:"+capa[i]+"\nvalue:"+value[i]+"\nnum:"+number[i]);
     }
@@ -251,9 +252,6 @@ $("#multi-bag").click(function(){
     }
     $("#bag-area").text("多重背包，装下的物品的总价值最大为"+bag[sum]);
     $("#bag-area").css("line-height","400px");
-    for(let w = 0;w<=sum;w++){
-        bag[w] = 0;
-    }
     for(let w = 0;w<record.length;w++){
         record[w] = -1;
     }
